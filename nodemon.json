@@ -1,0 +1,6 @@
+{
+    "watch": ["src"],
+    "ext": "js",
+    "exec": "NODE_ENV=dev node src/index.js"
+  }
+  

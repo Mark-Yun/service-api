@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../service-ai-agent"
+		},
+		{
+			"path": "../service-infra"
+		},
+		{
+			"path": "../service-shared-core"
+		}
+	],
+	"settings": {}
+}

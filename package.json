@@ -1,0 +1,37 @@
+{
+  "name": "service-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "nodemon",
+    "stg": "cross-env NODE_ENV=staging node src/index.js",
+    "prd": "cross-env NODE_ENV=production node src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mark-Yun/service-api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/Mark-Yun/service-api/issues"
+  },
+  "homepage": "https://github.com/Mark-Yun/service-api#readme",
+  "dependencies": {
+    "apollo-server-express": "^3.13.0",
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.4.7",
+    "express": "^5.1.0",
+    "graphql": "^16.10.0",
+    "graphql-compose": "^9.1.0",
+    "graphql-compose-mongoose": "^10.0.0",
+    "mongoose": "^8.13.2",
+    "service-shared-core": "file:../service-shared-core"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
+}
