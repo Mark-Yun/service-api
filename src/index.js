@@ -2,7 +2,7 @@ import express from 'express';
 import { ApolloServer } from 'apollo-server-express';
 import mongoose from 'mongoose';
 import { schemas } from 'service-shared-core/graphql/index.js';
-import config from './config/index.js'; // config가 디렉터리면 index.js 필요
+import config from './config/index.js';
 import { makeExecutableSchema } from '@graphql-tools/schema';
 
 const startServer = async () => {
