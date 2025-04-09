@@ -1,0 +1,97 @@
+"""Custom scalar for structured multilingual text, JSON format"""
+scalar JSON
+
+"""문제 유형 (객관식, 주관식)"""
+enum QuestionType {
+  """객관식 (예: 선택지 중 하나를 고르는 문제)"""
+  MULTIPLE_CHOICE
+
+  """주관식 (예: 직접 입력하는 문제)"""
+  OPEN_ENDED
+}
+
+"""문제 모델"""
+type Question {
+  """문제 ID"""
+  _id: ID!
+
+  """다국어 문제 지문"""
+  text(language: String!): String!
+
+  """다국어 정답"""
+  answer(language: String!): String!
+
+  """다국어 선택지 (객관식 문제에만 해당)"""
+  options(language: String!): [String]!
+
+  """문제 유형"""
+  type: QuestionType!
+
+  """문제 난이도 (0~10000)"""
+  difficulty: Int!
+
+  """문제 생성일 (ISO8601 문자열)"""
+  createdAt: String!
+
+  """문제에 할당된 태그 (주제, 개념 등)"""
+  tags: [String]!
+}
+
+"""문제 생성 입력 형식"""
+input CreateQuestionInput {
+    """다국어 문제 지문 (JSON 구조)"""
+    text: JSON!
+    """다국어 정답 (JSON 구조)"""
+    answer: JSON!
+    """다국어 선택지 배열 (객관식 문제용)"""
+    options: [JSON]!
+    """문제 유형"""
+    type: QuestionType!
+    """문제 난이도 (0~10000)"""
+    difficulty: Int!
+    """문제 태그 목록"""
+    tags: [String!]
+}
+
+"""문제 수정 입력 형식"""
+input UpdateQuestionInput {
+  """문제 ID"""
+  id: ID!
+  """다국어 문제 지문 (JSON 구조)"""
+  text: JSON
+  """다국어 정답 (JSON 구조)"""
+  answer: JSON
+  """다국어 선택지 배열 (객관식 문제용)"""
+  options: [JSON]
+  """문제 유형"""
+  type: QuestionType
+  """문제 난이도 (0~10000)"""
+  difficulty: Int
+  """문제 태그 목록"""
+  tags: [String]
+}
+
+"""문제 관련 쿼리"""
+type Query {
+  """문제 ID로 하나의 문제 조회"""
+  getQuestionById(id: ID!): Question
+
+  """지정된 태그 목록으로 문제 검색 (페이징 포함)"""
+  getQuestionsByTags(
+    tags: [String!]
+    limit: Int
+    skip: Int
+  ): [Question]
+}
+
+"""문제 관련 뮤테이션"""
+type Mutation {
+  """새 문제 생성"""
+  createQuestion(input: CreateQuestionInput!): Question
+
+  """기존 문제 수정"""
+  updateQuestion(input: UpdateQuestionInput!): Question
+
+  """문제 삭제"""
+  deleteQuestion(id: ID!): Boolean
+}
